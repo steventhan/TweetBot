@@ -1,25 +1,27 @@
 import twitter4j.Status;
 
 public class TweetQueue {
-    private LinkedList<Status> Q;
+    private LinkedList<Status> q;
 
     public TweetQueue() {
-        Q = new LinkedList<Status>();
+        q = new LinkedList<Status>();
     }
 
     public void enqueue(Status status) {
-        Q.push(status);
+        q.push(status);
     }
 
-    public Status dequeue() {
-        return Q.pop();
+    public Status dequeue() throws EmptyLinkedListException {
+        return q.pop();
     }
 
     public Status peek() {
-        return Q.peek();
+        return q.peek();
     }
 
+    public Integer size() { return q.size(); }
+
     public Boolean isEmpty() {
-        return Q.size() == 0;
+        return q.size() == 0;
     }
 }

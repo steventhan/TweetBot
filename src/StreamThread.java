@@ -1,12 +1,13 @@
 import twitter4j.*;
 
 public class StreamThread extends Thread {
+    @Override
     public void run() {
         TwitterStream stream = new TwitterStreamFactory().getSingleton();
         StatusListener listener = new StatusListener() {
             @Override
             public void onStatus(Status status) {
-                TweetBot.tweets.add(status);
+                TweetBot.tweets.enqueue(status);
             }
 
             @Override

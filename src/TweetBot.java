@@ -1,16 +1,26 @@
-import twitter4j.Status;
+import twitter4j.TwitterException;
 
-import java.util.*;
-import java.util.LinkedList;
 
 public class TweetBot {
-    static Queue<Status> tweets = new LinkedList<>();
+    public static TweetQueue tweets = new TweetQueue();
 
-    public static void main(String[] args) throws EmptyLinkedListException {
-        TweetThread tweetThread = new TweetThread();
-        tweetThread.start();
-        StreamThread streamThread = new StreamThread();
-        streamThread.start();
+    public static void main(String[] args) throws EmptyLinkedListException, TwitterException {
+        new TweetThread().start();
+        new StreamThread().start();
+
+//        TweetQueue queue = new TweetQueue();
+//        Twitter twitter = TwitterFactory.getSingleton();
+//        List<Status> statuses = twitter.getHomeTimeline();
+//        for (Status status : statuses) {
+//            queue.enqueue(status);
+//        }
+//        System.out.println(queue.isEmpty());
+//        System.out.println(queue.size());
+//        System.out.println(queue.dequeue().getText());
+//        System.out.println(queue.size());
+//        System.out.println(queue.dequeue().getText());
+//        System.out.println(queue.size());
+//        System.out.println(queue.isEmpty());
     }
 
 }

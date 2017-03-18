@@ -1,3 +1,7 @@
+class EmptyLinkedListException extends RuntimeException {
+   public EmptyLinkedListException(String msg) { super(msg); }
+}
+
 public class LinkedList <T> {
    public Node<T> head;
    public Node<T> tail;
@@ -18,10 +22,19 @@ public class LinkedList <T> {
       head = n;
    }
 
-   public T pop() {
-      Node new_tail = tail.prev;
+   public T pop() throws EmptyLinkedListException {
+      Node new_tail;
+      try {
+         new_tail = tail.prev;
+      } catch (NullPointerException e) {
+         throw new EmptyLinkedListException("Empty linked list");
+      }
       T data = tail.data;
-      new_tail.next = null;
+      try {
+         new_tail.next = null;
+      } catch (NullPointerException e) {
+         head = null;
+      }
       tail = new_tail;
       return data;
    }

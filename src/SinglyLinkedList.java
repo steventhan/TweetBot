@@ -1,6 +1,3 @@
-class EmptyLinkedListException extends Exception {
-    public EmptyLinkedListException(String msg) { super(msg); }
-}
 
 public class SinglyLinkedList <T> {
     public INode head;
