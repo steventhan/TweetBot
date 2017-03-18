@@ -23,7 +23,9 @@ public class TweetThread extends Thread {
     }
 
     private static void response(Status tweet) throws TwitterException {
-        Twitter twitter = TwitterFactory.getSingleton();
-        twitter.updateStatus(String.format("@%s %s", tweet.getUser().getScreenName(), tweet.getText()));
+        if (!tweet.getUser().getScreenName().equals("hot_topic_bot")) {
+            Twitter twitter = TwitterFactory.getSingleton();
+            twitter.updateStatus(String.format("@%s hello world!", tweet.getUser().getScreenName()));
+        }
     }
 }
